@@ -32,7 +32,7 @@ by Tancredi-Paul Grozav &lt;paul@grozav.info&gt;
     }
     log("Initialization finished. Ready to start");
     Quagga.start();
-    Quagga.onProcessed(function(data){
+    Quagga.onDetected(function(data){
     log("onProcessed");    
     });
   });
