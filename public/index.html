@@ -13,9 +13,15 @@ by Tancredi-Paul Grozav &lt;paul@grozav.info&gt;
 //  alert(Quagga);
   function log(msg){
     document.getElementById("log").innerHTML += "<br/>" + msg;
-  }
-  log("Starting...")
-  Quagga.init({
+  };
+  const db = {
+    codes: {
+      "123456789012345" : "Iaurt Danone delicios 200g",
+    }
+  };
+  log("Starting...");
+
+  quagga_config = {
     inputStream : {
       name : "Live",
       type : "LiveStream",
@@ -25,15 +31,23 @@ by Tancredi-Paul Grozav &lt;paul@grozav.info&gt;
     decoder : {
       readers : ["ean_reader"]
     }
-  }, function(err) {
-    if (err) {
-      alert(err);
+  };
+
+  function quagga_detected_handler(err)
+  {
+    log("H onDetected: " + data.codeResult.code + " format: " + data.codeResult.format);    
+  };
+  function quagga_init_handler(err)
+  {
+    if (err)
+    {
+      log(err);
       return;
     }
     log("Initialization finished. Ready to start");
     Quagga.start();
-    Quagga.onDetected(function(data){
-      log("onDetected: " + data.codeResult.code + " format: " + data.codeResult.format);    
+    Quagga.onDetected(quagga_detected_handler);
     });
-  });
+  };
+  Quagga.init(quagga_config, quagga_init_handler);
 </script>
