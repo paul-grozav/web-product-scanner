@@ -15,6 +15,7 @@ by Tancredi-Paul Grozav &lt;paul@grozav.info&gt;
     document.getElementById("log").innerHTML += msg;
   }
   log("Starting...")
+  log(Quagga)
   Quagga.init({
     inputStream : {
       name : "Live",
@@ -30,7 +31,7 @@ by Tancredi-Paul Grozav &lt;paul@grozav.info&gt;
       alert(err);
       return;
     }
-    alert("Initialization finished. Ready to start");
+    log("Initialization finished. Ready to start");
     Quagga.start();
   });
 </script>
