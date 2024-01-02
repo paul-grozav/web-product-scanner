@@ -33,7 +33,7 @@ by Tancredi-Paul Grozav &lt;paul@grozav.info&gt;
     log("Initialization finished. Ready to start");
     Quagga.start();
     Quagga.onDetected(function(data){
-    log("onProcessed");    
+      log("onDetected: " + data.codeResult.code + " format: " + data.codeResult.format);    
     });
   });
 </script>
