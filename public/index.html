@@ -12,7 +12,7 @@ by Tancredi-Paul Grozav &lt;paul@grozav.info&gt;
 <script type="text/javascript">
 //  alert(Quagga);
   function log(msg){
-    document.getElementById("log").innerHTML += msg;
+    document.getElementById("log").innerHTML += "<br/>" + msg;
   }
   log("Starting...")
   Quagga.init({
@@ -32,5 +32,8 @@ by Tancredi-Paul Grozav &lt;paul@grozav.info&gt;
     }
     log("Initialization finished. Ready to start");
     Quagga.start();
+    Quagga.onProcessed(function(data){
+    log("onProcessed");    
+    });
   });
 </script>
