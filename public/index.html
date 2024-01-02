@@ -1,4 +1,4 @@
-work in progress ... v0.0.3
+work in progress ... v0.0.4
 
 <br/>
 Check back later.
@@ -10,7 +10,7 @@ by Tancredi-Paul Grozav &lt;paul@grozav.info&gt;
 <div id="log"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js" integrity="sha512-bCsBoYoW6zE0aja5xcIyoCDPfT27+cGr7AOCqelttLVRGay6EKGQbR6wm6SUcUGOMGXJpj+jrIpMS6i80+kZPw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="text/javascript">
-//  alert(Quagga);
+  alert(Quagga);
   function log(msg)
   {
     document.getElementById("log").innerHTML += "<br/>" + msg;
@@ -22,7 +22,7 @@ by Tancredi-Paul Grozav &lt;paul@grozav.info&gt;
 //  };
   log("Starting...");
 
-  quagga_config = {
+  var quagga_config = {
     inputStream : {
       name : "Live",
       type : "LiveStream",
