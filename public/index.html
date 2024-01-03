@@ -15,12 +15,40 @@ by Tancredi-Paul Grozav &lt;paul@grozav.info&gt;
   {
     document.getElementById("log").innerHTML += "<br/>" + msg;
   };
+
+  // Function to download data to a file
+  function download(data, filename, type)
+  {
+    var file = new Blob([data], {type: type});
+    if (window.navigator.msSaveOrOpenBlob)
+    {
+      // IE10+
+      window.navigator.msSaveOrOpenBlob(file, filename);
+    }
+    else
+    {
+      // Others
+      var a = document.createElement("a");
+      var url = URL.createObjectURL(file);
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function()
+      {
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);  
+      }, 0); 
+    }
+  };
+
   var db = {
     codes: {
       "3577060130017" : "Iaurt Danone delicios 200g"
     }
   };
   log("Starting...");
+  log(JSON.stringify(db));
 
   var quagga_config = {
     inputStream : {
@@ -54,3 +82,4 @@ by Tancredi-Paul Grozav &lt;paul@grozav.info&gt;
   };
   Quagga.init(quagga_config, quagga_init_handler);
 </script>
+<button onclick="download('file text', 'myfilename.txt', 'text/plain')">Create file</button>
