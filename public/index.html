@@ -137,7 +137,7 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     html += "<td>expiration_month</td>";
     html += "<td>expiration_day</td>";
     html += "</tr>";
-    db.products.foreach(function(p)
+    db.products.forEach((p) =>
     {
       html += "<tr>";
       html += "<td>" + p.id + "</td>";
