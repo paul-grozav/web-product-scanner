@@ -126,14 +126,16 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
   log("Starting...");
 
   var quagga_config = {
-    inputStream : {
-      name : "Live",
-      type : "LiveStream",
+    inputStream:
+    {
+      name: "Live",
+      type: "LiveStream",
       // Or '#yourElement' (optional)
       target: document.querySelector('#camera')
     },
-    decoder : {
-      readers : ["ean_reader", "ean_8_reader"]
+    decoder:
+    {
+      readers: ["ean_reader", "ean_8_reader"]
     }
   };
 
