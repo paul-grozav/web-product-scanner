@@ -60,8 +60,8 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     "products": [
       {
         "id": 1,
-        "code_format": "ean_13",
         "code_value": "3577060130017",
+        "code_format": "ean_13",
         "name": "Iaurt Danone delicios 175g",
         "expiration_year": 2025,
         "expiration_month": 5,
@@ -141,12 +141,12 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     {
       html += "<tr>";
       html += "<td>" + p.id + "</td>";
-      html += "<td>Name</td>";
-      html += "<td>code_format</td>";
-      html += "<td>code_value</td>";
-      html += "<td>expiration_year</td>";
-      html += "<td>expiration_month</td>";
-      html += "<td>expiration_day</td>";
+      html += "<td>" + p.name + "</td>";
+      html += "<td>" + p.code_value + "</td>";
+      html += "<td>" + p.code_format + "</td>";
+      html += "<td>" + p.expiration_year + "</td>";
+      html += "<td>" + p.expiration_month + "</td>";
+      html += "<td>" + p.expiration_day + "</td>";
       html += "</tr>";
     });
     html += "</table>";
