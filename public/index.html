@@ -30,9 +30,7 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
 <a href="#product_edit">edit product:</a>
 <p>
   Code:
-  <select id="code_product_edit" size="2">
-    <option value="unknown">unknown</option>
-  </select>
+  <div id="code_product_edit"/>
   <br/>
   Name:
   <input type="text" id="name_product_edit"/>
@@ -177,9 +175,7 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     }
     if(!found)
     {
-      select_cpe.innerHTML += "<option value=\"" + id + "\">" + id + "</option>";
-      select_cpe.size = 4; //select_cpe.children.length;
-      log(select_cpe.children.length + " items");
+      select_cpe.innerHTML += "<input type=\"radio\" name=\"radio_code_product_edit\" value=\"" + id + "\">" + id + "</option>";
     }
     log("done");
   };
