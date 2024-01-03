@@ -48,13 +48,19 @@ by Tancredi-Paul Grozav &lt;paul@grozav.info&gt;
     }
   };
 
+  function export()
+  {
+    var data = JSON.stringify(db);
+    // log(data);
+    download(data, "products.json", "application/json");
+  };
+
   var db = {
     codes: {
       "3577060130017" : "Iaurt Danone delicios 200g"
     }
   };
   log("Starting...");
-  log(JSON.stringify(db));
 
   var quagga_config = {
     inputStream : {
@@ -88,4 +94,4 @@ by Tancredi-Paul Grozav &lt;paul@grozav.info&gt;
   };
   Quagga.init(quagga_config, quagga_init_handler);
 </script>
-<button onclick="download('file text', 'myfilename.txt', 'text/plain')">Create file</button>
+<button onclick="export()">Export</button>
