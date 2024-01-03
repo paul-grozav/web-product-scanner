@@ -200,7 +200,7 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     html += "</tr>";
     db.products.forEach(function callback(p, index)
     {
-      html += "<tr onclick=\"list_items(" + index + ");\"";
+      html += "<tr onclick=\"list_products(" + index + "); list_items(" + index + ");\"";
       if(highlited_index !== undefined &&
         index == highlited_index)
       {
