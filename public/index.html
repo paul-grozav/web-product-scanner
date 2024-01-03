@@ -163,7 +163,7 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     log(id);
     var select_cpe = document.getElementById("code_product_edit");
     var found = false;
-    for(var i=0; i<=select_cpe.children.length; i++)
+    for(var i=0; i<select_cpe.children.length; i++)
     {
       var option_i = select_cpe.children[i];
       if(option_i.value == id)
