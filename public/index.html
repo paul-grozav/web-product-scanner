@@ -72,17 +72,14 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
       {
         "code_value": "1234567890123",
         "code_format": "ean_13",
-        "id": null,
         "name": "Iaurt Danone delicios 175g",
         "items": [
           {
-            "id": null,
             "expiration_year": 2025,
             "expiration_month": 5,
             "expiration_day": 25
           },
           {
-            "id": null,
             "expiration_year": 2024,
             "expiration_month": 5,
             "expiration_day": 25
@@ -92,17 +89,14 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
       {
         "code_value": "3577060130017",
         "code_format": "ean_13",
-        "id": null,
         "name": "Chio popcorn sare 75g",
         "items": [
           {
-            "id": null,
             "expiration_year": 2024,
             "expiration_month": 10,
             "expiration_day": null
           },
           {
-            "id": null,
             "expiration_year": 2024,
             "expiration_month": 5,
             "expiration_day": 25
@@ -174,7 +168,6 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     var html = "<table border=\"1px\">";
     html += "<tr>";
     html += "<td>index</td>";
-    html += "<td>id</td>";
     html += "<td>expiration_year</td>";
     html += "<td>expiration_month</td>";
     html += "<td>expiration_day</td>";
@@ -183,7 +176,6 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     {
       html += "<tr>";
       html += "<td>" + index + "</td>";
-      html += "<td>" + item.id + "</td>";
       html += "<td>" + item.expiration_year + "</td>";
       html += "<td>" + item.expiration_month + "</td>";
       html += "<td>" + item.expiration_day + "</td>";
@@ -193,7 +185,7 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     list_div.innerHTML = html;
   };
 
-  function list_products()
+  function list_products(highlited_index)
   {
     var list_div = document.getElementById("list_of_products");
     var html = "<table border=\"1px\">";
@@ -202,19 +194,23 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     html += "<td>name</td>";
     html += "<td>code_value</td>";
     html += "<td>code_format</td>";
-    html += "<td>id</td>";
     //html += "<td>expiration_year</td>";
     //html += "<td>expiration_month</td>";
     //html += "<td>expiration_day</td>";
     html += "</tr>";
     db.products.forEach(function callback(p, index)
     {
-      html += "<tr onclick=\"this.style.backgroundColor='yellow'; list_items(" + index + ");\">";
+      html += "<tr onclick=\"list_items(" + index + ");\"";
+      if(highlited_index !== undefined &&
+        index == highlited_index)
+      {
+        html += "style=\"background-color: yellow;\"";
+      }
+      html += ">";
       html += "<td>" + index + "</td>";
       html += "<td>" + p.name + "</td>";
       html += "<td>" + p.code_value + "</td>";
       html += "<td>" + p.code_format + "</td>";
-      html += "<td>" + p.id + "</td>";
       //html += "<td>" + p.expiration_year + "</td>";
       //html += "<td>" + p.expiration_month + "</td>";
       //html += "<td>" + p.expiration_day + "</td>";
