@@ -48,6 +48,12 @@ by Tancredi-Paul Grozav &lt;paul@grozav.info&gt;
     }
   };
 
+  var db = {
+    codes: {
+      "3577060130017" : "Iaurt Danone delicios 200g"
+    }
+  };
+
   function export()
   {
     var data = JSON.stringify(db);
@@ -55,11 +61,6 @@ by Tancredi-Paul Grozav &lt;paul@grozav.info&gt;
     download(data, "products.json", "application/json");
   };
 
-  var db = {
-    codes: {
-      "3577060130017" : "Iaurt Danone delicios 200g"
-    }
-  };
   log("Starting...");
 
   var quagga_config = {
