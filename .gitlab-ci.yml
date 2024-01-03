@@ -9,7 +9,7 @@ pages:
   image: docker.io/debian:12.2
   script:
   - env
-  - sed -i 's/_GIT_COMMIT_ID_/$(git log -n 1 | head -n 1 | sed -e 's/^commit //' | head -c 8)/g' public/index.html
+  - sed -i 's/_GIT_COMMIT_ID_/'${CI_COMMIT_SHORT_SHA}'/g' public/index.html
   artifacts:
     paths:
     - public/
