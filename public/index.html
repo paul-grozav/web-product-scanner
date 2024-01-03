@@ -22,7 +22,8 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
 <hr/>
 
 <p id="camera"/>
-<p id="list"/>
+<p id="list_of_products"/>
+<p id="list_of_items"/>
 <p id="log"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js" integrity="sha512-bCsBoYoW6zE0aja5xcIyoCDPfT27+cGr7AOCqelttLVRGay6EKGQbR6wm6SUcUGOMGXJpj+jrIpMS6i80+kZPw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="text/javascript">
@@ -159,22 +160,55 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
   };
   Quagga.init(quagga_config, quagga_init_handler);
 
-  function list_products()
+  function list_items(product)
   {
-    var list_div = document.getElementById("list");
+    var list_div = document.getElementById("list_of_items");
     var html = "<table border=\"1px\">";
     html += "<tr>";
+    html += "<td>index</td>";
     html += "<td>ID</td>";
     html += "<td>Name</td>";
-    html += "<td>code_format</td>";
     html += "<td>code_value</td>";
+    html += "<td>code_format</td>";
     //html += "<td>expiration_year</td>";
     //html += "<td>expiration_month</td>";
     //html += "<td>expiration_day</td>";
     html += "</tr>";
-    db.products.forEach((p) =>
+    db.products.forEach(function callback(p, i)
     {
       html += "<tr>";
+      html += "<td>" + i + "</td>";
+      html += "<td>" + p.id + "</td>";
+      html += "<td>" + p.name + "</td>";
+      html += "<td>" + p.code_value + "</td>";
+      html += "<td>" + p.code_format + "</td>";
+      //html += "<td>" + p.expiration_year + "</td>";
+      //html += "<td>" + p.expiration_month + "</td>";
+      //html += "<td>" + p.expiration_day + "</td>";
+      html += "</tr>";
+    });
+    html += "</table>";
+    list_div.innerHTML = html;
+  };
+
+  function list_products()
+  {
+    var list_div = document.getElementById("list_of_products");
+    var html = "<table border=\"1px\">";
+    html += "<tr>";
+    html += "<td>index</td>";
+    html += "<td>ID</td>";
+    html += "<td>Name</td>";
+    html += "<td>code_value</td>";
+    html += "<td>code_format</td>";
+    //html += "<td>expiration_year</td>";
+    //html += "<td>expiration_month</td>";
+    //html += "<td>expiration_day</td>";
+    html += "</tr>";
+    db.products.forEach(function callback(p, index)
+    {
+      html += "<tr>";
+      html += "<td>" + index + "</td>";
       html += "<td>" + p.id + "</td>";
       html += "<td>" + p.name + "</td>";
       html += "<td>" + p.code_value + "</td>";
