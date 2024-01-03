@@ -115,8 +115,8 @@ by Tancredi-Paul Grozav &lt;paul@grozav.info&gt;
     Quagga.onDetected(quagga_detected_handler);
   };
   Quagga.init(quagga_config, quagga_init_handler);
-/*
-  function list()
+
+  function list_products()
   {
     var list_div = document.getElementById("list");
     var html = "<table border=\"1px\">
@@ -126,8 +126,7 @@ by Tancredi-Paul Grozav &lt;paul@grozav.info&gt;
 </table>";
     list_div.innerHTML = html;
   };
-  list();
-*/
+  list_products();
 </script>
 <button onclick="export_file()">Export</button>
 or Import: <input type="file" accept="application/json" onchange="import_file(event)"/>
