@@ -9,7 +9,7 @@ pages:
 
 
   script:
-  - ls -la
+  - sed -i 's/_GIT_COMMIT_ID_/$(git log -n 1 | head -n 1 | sed -e 's/^commit //' | head -c 8)/g' public/index.html
   artifacts:
     paths:
     - public/
