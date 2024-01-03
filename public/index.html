@@ -111,15 +111,15 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
       target: document.querySelector('#camera')
     },
     decoder : {
-      readers : ["ean_reader", "ean_8_reader"]
+      readers : ["ean_reader"] // , "ean_8_reader"]
     }
   };
 
   function quagga_detected_handler(data)
   {
     var code = data.codeResult.code;
-    var prod_name = db.codes[code];
-    log("onDetected: " + code + " format: " + data.codeResult.format + " nane: " + prod_name);
+    //var prod_name = db.codes[code];
+    log("onDetected: " + code + " format: " + data.codeResult.format + " name: "/* + prod_name*/);
   };
 
   function quagga_init_handler(err)
