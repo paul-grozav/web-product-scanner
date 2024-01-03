@@ -12,9 +12,16 @@ Check back later.
 <br/>
 by Tancredi-Paul Grozav &lt;paul@grozav.info&gt;
 
+<hr/>
+
+<button onclick="export_file()">Export</button>
+or Import: <input type="file" accept="application/json" onchange="import_file(event)"/>
+
+<hr/>
+
 <p id="camera"/>
-<p id="log"/>
 <p id="list"/>
+<p id="log"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js" integrity="sha512-bCsBoYoW6zE0aja5xcIyoCDPfT27+cGr7AOCqelttLVRGay6EKGQbR6wm6SUcUGOMGXJpj+jrIpMS6i80+kZPw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="text/javascript">
   // alert(Quagga);
@@ -131,5 +138,3 @@ by Tancredi-Paul Grozav &lt;paul@grozav.info&gt;
   };
   list_products();
 </script>
-<button onclick="export_file()">Export</button>
-or Import: <input type="file" accept="application/json" onchange="import_file(event)"/>
