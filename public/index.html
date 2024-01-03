@@ -177,6 +177,7 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     {
       select_cpe.innerHTML += "<option value=\"" + id + "\">" + id + "</option>";
       select_cpe.size = select_cpe.children.length;
+      log(select_cpe.children.length + " items");
     }
     log("done");
   };
