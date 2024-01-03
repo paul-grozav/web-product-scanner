@@ -54,7 +54,7 @@ by Tancredi-Paul Grozav &lt;paul@grozav.info&gt;
     }
   };
 
-  function export()
+  function export_file()
   {
     var data = JSON.stringify(db);
     // log(data);
@@ -95,4 +95,4 @@ by Tancredi-Paul Grozav &lt;paul@grozav.info&gt;
   };
   Quagga.init(quagga_config, quagga_init_handler);
 </script>
-<button onclick="export()">Export</button>
+<button onclick="export_file()">Export</button>
