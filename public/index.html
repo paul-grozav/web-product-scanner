@@ -21,14 +21,22 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
 
 <hr/>
 
-<a href="#camera">camera:</a>
-<p id="camera">&nbsp;</p>
-
 <a href="#products">products:</a>
 <p id="list_of_products">&nbsp;</p>
 
 <a href="#items">items:</a>
 <p id="list_of_items">&nbsp;</p>
+
+<a href="#product_edit">edit product:</a>
+<p>
+  Code:
+  <select id="code_product_edit"/>
+  Name:
+  <input type="text" id="name_product_edit"/>
+</p>
+
+<a href="#camera">camera:</a>
+<p id="camera">&nbsp;</p>
 
 <a href="#log">log:</a>
 <p id="log">&nbsp;</p>
@@ -149,8 +157,24 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
   function quagga_detected_handler(data)
   {
     var code = data.codeResult.code;
+    var format = data.codeResult.format;
     //var prod_name = db.codes[code];
-    log("onDetected: " + code + " format: " + data.codeResult.format + " name: "/* + prod_name*/);
+    var id = code + " " + format;
+    var select_cpe = document.getElementById("code_product_edit");
+    var found = false;
+    for(var i=0; i<=select_cpe.children.length; i++)
+    {
+      var option_i = select_cpe.children[i];
+      if(option_i.value == id)
+      {
+        found = true;
+        break;
+      }
+    }
+    if(!found)
+    {
+      select_cpe.innerHTML += "<option value=\"" + id + "\">" + id + "</option>";
+    }
   };
 
   function quagga_init_handler(err)
