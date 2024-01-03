@@ -65,18 +65,40 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
         "code_value": "1234567890123",
         "code_format": "ean_13",
         "name": "Iaurt Danone delicios 175g",
-        "expiration_year": 2025,
-        "expiration_month": 5,
-        "expiration_day": 25
+        "items": [
+          {
+            "id": null,
+            "expiration_year": 2025,
+            "expiration_month": 5,
+            "expiration_day": 25
+          },
+          {
+            "id": null,
+            "expiration_year": 2024,
+            "expiration_month": 5,
+            "expiration_day": 25
+          }
+        ]
       },
       {
         "id": 2,
         "code_value": "3577060130017",
         "code_format": "ean_13",
         "name": "Chio popcorn sare 75g",
-        "expiration_year": 2024,
-        "expiration_month": 7,
-        "expiration_day": null
+        "items": [
+          {
+            "id": null,
+            "expiration_year": 2024,
+            "expiration_month": 10,
+            "expiration_day": null
+          },
+          {
+            "id": null,
+            "expiration_year": 2024,
+            "expiration_month": 5,
+            "expiration_day": 25
+          }
+        ]
       }
     ]
   };
@@ -144,9 +166,9 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     html += "<td>Name</td>";
     html += "<td>code_format</td>";
     html += "<td>code_value</td>";
-    html += "<td>expiration_year</td>";
-    html += "<td>expiration_month</td>";
-    html += "<td>expiration_day</td>";
+    //html += "<td>expiration_year</td>";
+    //html += "<td>expiration_month</td>";
+    //html += "<td>expiration_day</td>";
     html += "</tr>";
     db.products.forEach((p) =>
     {
@@ -155,9 +177,9 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
       html += "<td>" + p.name + "</td>";
       html += "<td>" + p.code_value + "</td>";
       html += "<td>" + p.code_format + "</td>";
-      html += "<td>" + p.expiration_year + "</td>";
-      html += "<td>" + p.expiration_month + "</td>";
-      html += "<td>" + p.expiration_day + "</td>";
+      //html += "<td>" + p.expiration_year + "</td>";
+      //html += "<td>" + p.expiration_month + "</td>";
+      //html += "<td>" + p.expiration_day + "</td>";
       html += "</tr>";
     });
     html += "</table>";
