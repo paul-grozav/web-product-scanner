@@ -49,8 +49,15 @@ by Tancredi-Paul Grozav &lt;paul@grozav.info&gt;
   };
 
   var db = {
-    codes: {
-      "3577060130017" : "Iaurt Danone delicios 200g"
+    "products": [
+      {
+        "id": 1,
+        "code_format": "ean_13",
+        "code_value": "3577060130017",
+        "name": "Iaurt Danone delicios 175g",
+        "expiration_year": 2025,
+        "expiration_month": 5,
+        "expiration_day": 25
     }
   };
 
@@ -61,7 +68,8 @@ by Tancredi-Paul Grozav &lt;paul@grozav.info&gt;
     reader.onload = function()
     {
       var text = reader.result;
-      log(text);
+      // log(text);
+      db = JSON.parse(text);
     };
     reader.readAsText(input.files[0]);
   };
@@ -106,6 +114,20 @@ by Tancredi-Paul Grozav &lt;paul@grozav.info&gt;
     Quagga.onDetected(quagga_detected_handler);
   };
   Quagga.init(quagga_config, quagga_init_handler);
+
+  function list()
+  {
+    var list_div = document.getElementById("list");
+    var html = "<table border=\"1px\">
+  <tr>
+    <td>C1</td>
+  </tr>
+</table>";
+    list_div.innerHTML = html;
+
+  };
+  list();
 </script>
 <button onclick="export_file()">Export</button>
-<input type="file" accept="application/json" onchange="import_file(event)"/>
+or Import: <input type="file" accept="application/json" onchange="import_file(event)"/>
+<div id="list"/>
