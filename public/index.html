@@ -137,10 +137,10 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     html += "<td>expiration_month</td>";
     html += "<td>expiration_day</td>";
     html += "</tr>";
-    for (var i=0; i<100; i++)
+    db.products.foreach(function(p)
     {
       html += "<tr>";
-      html += "<td>ID</td>";
+      html += "<td>" + p.id + "</td>";
       html += "<td>Name</td>";
       html += "<td>code_format</td>";
       html += "<td>code_value</td>";
@@ -148,7 +148,7 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
       html += "<td>expiration_month</td>";
       html += "<td>expiration_day</td>";
       html += "</tr>";
-    }
+    });
     html += "</table>";
     list_div.innerHTML = html;
   };
