@@ -44,6 +44,9 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js" integrity="sha512-bCsBoYoW6zE0aja5xcIyoCDPfT27+cGr7AOCqelttLVRGay6EKGQbR6wm6SUcUGOMGXJpj+jrIpMS6i80+kZPw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="text/javascript">
+  // vars
+  var scanner_values = {};
+
   // alert(Quagga);
   function log(msg)
   {
@@ -161,23 +164,24 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     var format = data.codeResult.format;
     //var prod_name = db.codes[code];
     var id = code + " " + format;
-    log(id);
-    var select_cpe = document.getElementById("code_product_edit");
+    //log(id);
+    //var select_cpe = document.getElementById("code_product_edit");
     var found = false;
-    for(var i=0; i<select_cpe.children.length; i++)
+    for (const [key, value] of Object.entries(scanner_values))
     {
-      var option_i = select_cpe.children[i];
-      if(option_i.value == id)
+      if(key == id)
       {
         found = true;
+        value++;
         break;
       }
     }
     if(!found)
     {
-      select_cpe.innerHTML += "<input type=\"radio\" name=\"radio_code_product_edit\" value=\"" + id + "\"/>" + id + "<br/>";
+      scanner_values[id] = 1;
+      //select_cpe.innerHTML += "<input type=\"radio\" name=\"radio_code_product_edit\" value=\"" + id + "\"/>" + id + "<br/>";
     }
-    log("done");
+    log(JSON.stringify(scanner_values));
   };
 
   function quagga_init_handler(err)
