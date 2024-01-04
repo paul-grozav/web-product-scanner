@@ -161,7 +161,7 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
   function render_sorted_scanner_values()
   {
     var varr = Object.entries(scanner_values);
-    varr.sort((a,b) => (a[1] > b[1]) ? 1 : ((b[1] > a[1]) ? -1 : 0));
+    varr.sort((a,b) => (a[1] > b[1]) ? -1 : ((b[1] > a[1]) ? 1 : 0));
     log(JSON.stringify(varr));
   };
 
