@@ -163,6 +163,15 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     var varr = Object.entries(scanner_values);
     varr.sort((a,b) => (a[1] > b[1]) ? -1 : ((b[1] > a[1]) ? 1 : 0));
     log(JSON.stringify(varr));
+    var select_cpe = document.getElementById("code_product_edit");
+    while (select_cpe.firstChild)
+    {
+      select_cpe.removeChild(select_cpe.firstChild);
+    }
+    varr.forEach((e) => {
+      var id = e[1] + " - " + e[0];
+      select_cpe.innerHTML += "<input type=\"radio\" name=\"radio_code_product_edit\" value=\"" + id + "\"/>" + id + "<br/>";
+    });
   };
 
   function quagga_detected_handler(data)
@@ -172,7 +181,6 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     //var prod_name = db.codes[code];
     var id = code + " " + format;
     //log(id);
-    //var select_cpe = document.getElementById("code_product_edit");
     var found = false;
     for (const [key, value] of Object.entries(scanner_values))
     {
@@ -187,7 +195,6 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     if(!found)
     {
       scanner_values[id] = 1;
-      //select_cpe.innerHTML += "<input type=\"radio\" name=\"radio_code_product_edit\" value=\"" + id + "\"/>" + id + "<br/>";
     }
     render_sorted_scanner_values();
   };
