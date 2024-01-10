@@ -36,9 +36,9 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
 <a href="#item_edit">edit item:</a>
 <p>
   <br/> Expiration: 
-  <br/> year: <input type="text" id="year_expiration_item_edit"/>
-  <br/> month: <input type="text" id="month_expiration_item_edit"/>
-  <br/> day: <input type="text" id="day_expiration_item_edit"/>
+  <br/> year: <input type="number" min="2000" max="3000" id="year_expiration_item_edit"/>
+  <br/> month: <input type="number" min="1" max="12" id="month_expiration_item_edit"/>
+  <br/> day: <input type="number" min="1" max="31" id="day_expiration_item_edit"/>
   <br/> <input type="button" onclick="add_item()" value="Add item"/>
 </p>
 
