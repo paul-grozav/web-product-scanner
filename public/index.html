@@ -255,7 +255,7 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     html += "<td>expiration_month</td>";
     html += "<td>expiration_day</td>";
     html += "</tr>";
-    db.products.items.forEach(function callback(item, index)
+    db.items.forEach(function callback(item, index)
     {
       if(item.product_id !== product_id)
       {
