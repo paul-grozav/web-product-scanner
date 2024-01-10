@@ -156,13 +156,15 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
   {
     var id = db.items[db.items.length - 1].id + 1;
     var ey = parseInt(document.getElementById("year_expiration_product_edit").value, 10);
+    var em = parseInt(document.getElementById("month_expiration_product_edit").value, 10);
+    var ed = parseInt(document.getElementById("day_expiration_product_edit").value, 10);
     //db.items.push(
     log(JSON.stringify({
       "id": id,
       "product_id": selected_product_id,
       "expiration_year": ey,
-      "expiration_month": 2,
-      "expiration_day": 11      
+      "expiration_month": em,
+      "expiration_day": ed
     }));
     list_items();
     log("added item");
