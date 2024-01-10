@@ -136,10 +136,25 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     ]
   };
 
+  function product_for_id(id)
+  {
+    var element = null;
+    db.products.forEach((p) =>
+    {
+      if(p.id == id)
+      {
+        element = p;
+        return;
+      }
+    });
+    return element;
+  };
+  log(product_for_id(1));
+
   function add_item()
   {
     log("NOT added item");
-  }
+  };
 
   function import_file(event)
   {
