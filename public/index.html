@@ -31,12 +31,15 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
 <p>
   Code: <p id="code_product_edit">&nbsp;</p>
   <br/> Name: <input type="text" id="name_product_edit"/>
+  <br/> <input type="button" onclick="add_product()" value="Add product"/>
+</p>
+<a href="#item_edit">edit item:</a>
+<p>
   <br/> Expiration: 
-  <br/> year: <input type="text" id="year_expiration_product_edit"/>
-  <br/> month: <input type="text" id="month_expiration_product_edit"/>
-  <br/> day: <input type="text" id="day_expiration_product_edit"/>
-  <br/>
-  <input type="button" onclick="add_item()" value="Add item"/>
+  <br/> year: <input type="text" id="year_expiration_item_edit"/>
+  <br/> month: <input type="text" id="month_expiration_item_edit"/>
+  <br/> day: <input type="text" id="day_expiration_item_edit"/>
+  <br/> <input type="button" onclick="add_item()" value="Add item"/>
 </p>
 
 <a href="#camera">camera:</a>
@@ -152,12 +155,31 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
   };
   // log(JSON.stringify(product_for_id(2)));
 
+  function add_product()
+  {
+    var id = db.products[db.products.length - 1].id + 1;
+    var code_value = document.getElementById("radio_code_product_edit").value;
+    var code_format = code_value.split(" - ")[1];
+    code_value = code_value.split(" - ")[0];
+    var name = parseInt(document.getElementById("name_product_edit").value, 10);
+    var product = {
+      "id": id,
+      "code_value": code_value,
+      "code_format": code_format,
+      "name": name
+    };
+    //db.products.push(product);
+    log(JSON.stringify(product));
+    list_products();
+    log("added product");
+  };
+
   function add_item()
   {
     var id = db.items[db.items.length - 1].id + 1;
-    var ey = parseInt(document.getElementById("year_expiration_product_edit").value, 10);
-    var em = parseInt(document.getElementById("month_expiration_product_edit").value, 10);
-    var ed = parseInt(document.getElementById("day_expiration_product_edit").value, 10);
+    var ey = parseInt(document.getElementById("year_expiration_item_edit").value, 10);
+    var em = parseInt(document.getElementById("month_expiration_item_edit").value, 10);
+    var ed = parseInt(document.getElementById("day_expiration_item_edit").value, 10);
     var item = {
       "id": id,
       "product_id": selected_product_id,
@@ -180,6 +202,8 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
       var text = reader.result;
       // log(text);
       db = JSON.parse(text);
+      list_products();
+      log("products loaded successfully.");
     };
     reader.readAsText(input.files[0]);
   };
