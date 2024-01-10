@@ -163,7 +163,7 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     var code_value = document.getElementById("radio_code_product_edit").value;
     var code_format = code_value.split(" ")[3];
     code_value = code_value.split(" ")[2];
-    var name = parseInt(document.getElementById("name_product_edit").value, 10);
+    var name = document.getElementById("name_product_edit").value;
     var product = {
       "id": id,
       "code_value": code_value,
