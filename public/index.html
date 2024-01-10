@@ -253,12 +253,12 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     list_div.innerHTML = html;
   };
 
-  function list_products(highlited_index)
+  function list_products(highlited_id)
   {
     var list_div = document.getElementById("list_of_products");
     var html = "<table border=\"1px\">";
     html += "<tr>";
-    html += "<td>index</td>";
+    html += "<td>id</td>";
     html += "<td>name</td>";
     html += "<td>code_value</td>";
     html += "<td>code_format</td>";
@@ -268,14 +268,15 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     html += "</tr>";
     db.products.forEach(function callback(p, index)
     {
-      html += "<tr onclick=\"list_products(" + index + "); list_items(" + index + ");\"";
-      if(highlited_index !== undefined &&
-        index == highlited_index)
+      html += "<tr onclick=\"list_products(" + p.id + "); list_items(" + p.id + ");\"";
+      if(highlited_id !== undefined &&
+        index == highlited_id)
       {
         html += "style=\"background-color: yellow;\"";
       }
       html += ">";
-      html += "<td>" + index + "</td>";
+      // html += "<td>" + index + "</td>";
+      html += "<td>" + p.id + "</td>";
       html += "<td>" + p.name + "</td>";
       html += "<td>" + p.code_value + "</td>";
       html += "<td>" + p.code_format + "</td>";
