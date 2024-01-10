@@ -245,20 +245,24 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
   };
   Quagga.init(quagga_config, quagga_init_handler);
 
-  function list_items(product_index)
+  function list_items(product_id)
   {
     var list_div = document.getElementById("list_of_items");
     var html = "<table border=\"1px\">";
     html += "<tr>";
-    html += "<td>index</td>";
+    html += "<td>id</td>";
     html += "<td>expiration_year</td>";
     html += "<td>expiration_month</td>";
     html += "<td>expiration_day</td>";
     html += "</tr>";
-    db.products[product_index].items.forEach(function callback(item, index)
+    db.products.items.forEach(function callback(item, index)
     {
+      if(item.product_id !== product_id)
+      {
+        return;
+      }
       html += "<tr>";
-      html += "<td>" + index + "</td>";
+      html += "<td>" + item.id + "</td>";
       html += "<td>" + item.expiration_year + "</td>";
       html += "<td>" + item.expiration_month + "</td>";
       html += "<td>" + item.expiration_day + "</td>";
