@@ -160,24 +160,18 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
   function add_product()
   {
     var id = db.products[db.products.length - 1].id + 1;
-    log(id);
-    //var code_value = document.getElementById("radio_code_product_edit").value;
     var code_value = document.querySelector('input[name="radio_code_product_edit"]:checked').value;
-    log(code_value);
     var code_format = code_value.split(" ")[3];
-    log(code_format);
     code_value = code_value.split(" ")[2];
-    log(code_value);
     var name = document.getElementById("name_product_edit").value;
-    log(name);
     var product = {
       "id": id,
       "code_value": code_value,
       "code_format": code_format,
       "name": name
     };
-    //db.products.push(product);
-    log(JSON.stringify(product));
+    db.products.push(product);
+    //log(JSON.stringify(product));
     list_products();
     log("added product");
   };
