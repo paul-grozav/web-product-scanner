@@ -31,7 +31,9 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
 <p>
   Code: <p id="code_product_edit">&nbsp;</p>
   <br/> Name: <input type="text" id="name_product_edit"/>
-  <br/> <input type="button" onclick="add_product()" value="Add product"/>
+  <br/>
+  <input type="button" onclick="add_product()" value="add product"/>
+  <input type="button" onclick="remove_product()" value="remove product"/>
 </p>
 <a href="#item_edit">edit item:</a>
 <p>
@@ -156,6 +158,13 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     return element;
   };
   // log(JSON.stringify(product_for_id(2)));
+
+  function remove_product()
+  {
+    db.products = db.products.filter(function(e) { return e.id !== selected_product_id; });
+    list_products();
+    log("removed product");
+  };
 
   function add_product()
   {
