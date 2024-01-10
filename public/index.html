@@ -135,6 +135,7 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
       }
     ]
   };
+  var selected_product_id = null;
 
   function product_for_id(id)
   {
@@ -153,6 +154,7 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
 
   function add_item()
   {
+    
     log("NOT added item");
   };
 
@@ -245,7 +247,7 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
   };
   Quagga.init(quagga_config, quagga_init_handler);
 
-  function list_items(product_id)
+  function list_items()
   {
     var list_div = document.getElementById("list_of_items");
     var html = "<table border=\"1px\">";
@@ -257,7 +259,7 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     html += "</tr>";
     db.items.forEach(function callback(item, index)
     {
-      if(item.product_id !== product_id)
+      if(item.product_id !== selected_product_id)
       {
         return;
       }
@@ -272,7 +274,7 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     list_div.innerHTML = html;
   };
 
-  function list_products(highlited_id)
+  function list_products()
   {
     var list_div = document.getElementById("list_of_products");
     var html = "<table border=\"1px\">";
@@ -287,9 +289,9 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     html += "</tr>";
     db.products.forEach(function callback(p, index)
     {
-      html += "<tr onclick=\"list_products(" + p.id + "); list_items(" + p.id + ");\"";
-      if(highlited_id !== undefined &&
-        p.id == highlited_id)
+      html += "<tr onclick=\"selected_product_id = " + p.id + "; list_products(); list_items();\"";
+      if(selected_product_id !== undefined &&
+        p.id == selected_product_id)
       {
         html += "style=\"background-color: yellow;\"";
       }
