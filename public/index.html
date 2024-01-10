@@ -149,7 +149,7 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     });
     return element;
   };
-  log(product_for_id(1));
+  log(JSON.stringify(product_for_id(1)));
 
   function add_item()
   {
