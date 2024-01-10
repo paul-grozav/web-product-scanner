@@ -289,7 +289,7 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     {
       html += "<tr onclick=\"list_products(" + p.id + "); list_items(" + p.id + ");\"";
       if(highlited_id !== undefined &&
-        index == highlited_id)
+        p.id == highlited_id)
       {
         html += "style=\"background-color: yellow;\"";
       }
