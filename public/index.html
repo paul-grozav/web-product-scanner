@@ -29,11 +29,14 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
 
 <a href="#product_edit">edit product:</a>
 <p>
-  Code:
-  <p id="code_product_edit">&nbsp;</p>
+  Code: <p id="code_product_edit">&nbsp;</p>
+  <br/> Name: <input type="text" id="name_product_edit"/>
+  <br/> Expiration: 
+  <br/> year: <input type="text" id="year_expiration_product_edit"/>
+  <br/> month: <input type="text" id="month_expiration_product_edit"/>
+  <br/> day: <input type="text" id="day_expiration_product_edit"/>
   <br/>
-  Name:
-  <input type="text" id="name_product_edit"/>
+  <input type="button" onclick="add_item()" value="Add item"/>
 </p>
 
 <a href="#camera">camera:</a>
@@ -122,6 +125,11 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
       }
     ]
   };
+
+  function add_item()
+  {
+    log("NOT added item");
+  }
 
   function import_file(event)
   {
