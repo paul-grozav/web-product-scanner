@@ -53,6 +53,14 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
 <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js" integrity="sha512-bCsBoYoW6zE0aja5xcIyoCDPfT27+cGr7AOCqelttLVRGay6EKGQbR6wm6SUcUGOMGXJpj+jrIpMS6i80+kZPw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="text/javascript">
   // vars
+  var previously_scanned_value = {
+    "code": "",
+    "format": ""
+  };
+  // this certainty is 0 when value is met for the first time, and it is
+  // increased each time the same value is read consecutively.
+  var current_scanned_value_certainty = 0;
+  var scanned_certainty_threshold = 10;
   var scanner_values = {
     "1234567890123 ean_13": 9999
   };
@@ -102,6 +110,12 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
         "code_value": "3577060130017",
         "code_format": "ean_13",
         "name": "Chio popcorn sare 75g",
+      },
+      {
+        "id": 3,
+        "code_value": "0012345678912",
+        "code_format": "ean_13",
+        "name": "DUMMY - https://cdn-dfhjh.nitrocdn.com/BzQnABYFnLkAUVnIDRwDtFjmHEaLtdtL/assets/images/optimized/rev-a58b9b0/www.gtin.info/wp-content/uploads/2015/02/barcode-1.png",
       }
     ],
     "items": [
@@ -143,6 +157,22 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     ]
   };
   var selected_product_id = null;
+
+  function product_for_code(code)
+  {
+    var element = null;
+    db.products.forEach((p) =>
+    {
+      if(p.code_value == code.code && p.code_format == code.format)
+      {
+        element = p;
+        return;
+      }
+    });
+    return element;
+  };
+  // log(JSON.stringify(product_for_code(
+  //   {"code":"3577060130017","format":"ean_13"})));
 
   function product_for_id(id)
   {
@@ -258,12 +288,45 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
   };
   render_sorted_scanner_values();
 
+  function scan_certainty_handler()
+  {
+    var code = previously_scanned_value.code;
+    var format = previously_scanned_value.format;
+    var id = code + " " + format;
+
+    // display the found product
+    var select_cpe = document.getElementById("code_product_edit");
+    while (select_cpe.firstChild)
+    {
+      select_cpe.removeChild(select_cpe.firstChild);
+    }
+    select_cpe.innerHTML = "<pre>"
+      + JSON.stringify(product_for_code(previously_scanned_value))
+      + "</pre>";
+  };
+  
   function quagga_detected_handler(data)
   {
     var code = data.codeResult.code;
     var format = data.codeResult.format;
+    if (previously_scanned_value.code == code &&
+      previously_scanned_value.format == format)
+    {
+      current_scanned_value_certainty += 1;
+    }else{
+      current_scanned_value_certainty = 0;
+    }
+    previously_scanned_value.code = code;
+    previously_scanned_value.format = format;
     //var prod_name = db.codes[code];
     var id = code + " " + format;
+    if (current_scanned_value_certainty >= scanned_certainty_threshold)
+    {
+      scan_certainty_handler();
+    }
+    
+    /*
+    // In this, we attempt to render all values, and their frequency
     //log(id);
     var found = false;
     for (const [key, value] of Object.entries(scanner_values))
@@ -281,6 +344,7 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
       scanner_values[id] = 1;
     }
     render_sorted_scanner_values();
+    */
   };
 
   function quagga_init_handler(err)
