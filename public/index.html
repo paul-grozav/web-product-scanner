@@ -29,6 +29,7 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
 
 <a href="#product_edit">edit product:</a>
 <p>
+  Found: <p id="code_product_found">&nbsp;</p>
   Code: <p id="code_product_edit">&nbsp;</p>
   <br/> Name: <input type="text" id="name_product_edit"/>
   <br/>
@@ -116,6 +117,12 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
         "code_value": "0012345678912",
         "code_format": "ean_13",
         "name": "DUMMY - https://cdn-dfhjh.nitrocdn.com/BzQnABYFnLkAUVnIDRwDtFjmHEaLtdtL/assets/images/optimized/rev-a58b9b0/www.gtin.info/wp-content/uploads/2015/02/barcode-1.png",
+      },
+      {
+        "id": 4,
+        "code_value": "9780201379624",
+        "code_format": "ean_13",
+        "name": "DUMMY 2 - https://barcode.tec-it.com/barcode.ashx?data=978020137962&code=EAN13&translate-esc=on",
       }
     ],
     "items": [
@@ -295,7 +302,7 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     var id = code + " " + format;
 
     // display the found product
-    var select_cpe = document.getElementById("code_product_edit");
+    var select_cpe = document.getElementById("code_product_found");
     while (select_cpe.firstChild)
     {
       select_cpe.removeChild(select_cpe.firstChild);
@@ -316,16 +323,17 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
     }else{
       current_scanned_value_certainty = 0;
     }
+    log(current_scanned_value_certainty)
     previously_scanned_value.code = code;
     previously_scanned_value.format = format;
-    //var prod_name = db.codes[code];
+
     var id = code + " " + format;
     if (current_scanned_value_certainty >= scanned_certainty_threshold)
     {
       scan_certainty_handler();
     }
     
-    /*
+    
     // In this, we attempt to render all values, and their frequency
     //log(id);
     var found = false;
@@ -344,7 +352,7 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
       scanner_values[id] = 1;
     }
     render_sorted_scanner_values();
-    */
+    
   };
 
   function quagga_init_handler(err)
