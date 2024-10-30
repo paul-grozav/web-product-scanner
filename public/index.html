@@ -363,6 +363,8 @@ or Import: <input type="file" accept="application/json" onchange="import_file(ev
       return;
     }
     log("Initialization finished. Ready to start");
+    // var track = Quagga.CameraAccess.getActiveTrack();
+    // track.applyConstraints({advanced: [{torch: true}]});
     Quagga.start();
     Quagga.onDetected(quagga_detected_handler);
   };
