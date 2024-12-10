@@ -13,18 +13,19 @@ import "./App.css";
 // Import the BarcodeScanner component
 import BarcodeScanner from "./components/BarcodeScanner";
 // import Table from "./components/Table";
+import GoogleSignIn from './components/GoogleSignIn';
 
 function App() {
   const [message, setMessage] = useState<string>("Loading...");
 
   useEffect(() => {
-//    fetch("http://localhost:5000/api/hello")
-//      .then((response) => response.json())
-//      .then((data) => setMessage(data.message))
-//      .catch((error) => {
-//        console.error(error);
-//        setMessage("Error loading message");
-//      });
+    // fetch("http://localhost:5000/api/hello")
+    //   .then((response) => response.json())
+    //   .then((data) => setMessage(data.message))
+    //   .catch((error) => {
+    //     console.error(error);
+    //     setMessage("Error loading message");
+    //   });
   }, []);
 
   const onBarcodeDetected = (scanned_value: any) =>
@@ -578,25 +579,25 @@ function App() {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-  const [userInfo, setUserInfo] = useState<any>(null);
+  // const [userInfo, setUserInfo] = useState<any>(null);
 
-  // Callback function after successful authentication
-  const handleCredentialResponse = (response: any) => {
-    console.log("Google authentication response:", response);
-    const { credential } = response;
-    // Send the ID token to your backend or verify it on the frontend
-    // For simplicity, we'll assume the client directly uses the token for Google Drive API
-    localStorage.setItem("google_token", credential); // Store token to local storage
-    getUserInfo(credential); // Fetch user information
-  };
+  // // Callback function after successful authentication
+  // export const handleCredentialResponse = (response: any) => {
+  //   console.log("Google authentication response:", response);
+  //   const { credential } = response;
+  //   // Send the ID token to your backend or verify it on the frontend
+  //   // For simplicity, we'll assume the client directly uses the token for Google Drive API
+  //   localStorage.setItem("google_token", credential); // Store token to local storage
+  //   getUserInfo(credential); // Fetch user information
+  // };
 
-  // Get user info using Google OAuth credentials (token)
-  const getUserInfo = async (token: string) => {
-    const response = await fetch("https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=" + token);
-    const userData = await response.json();
-    console.log("User Info:", userData);
-    setUserInfo(userData);
-  };
+  // // Get user info using Google OAuth credentials (token)
+  // const getUserInfo = async (token: string) => {
+  //   const response = await fetch("https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=" + token);
+  //   const userData = await response.json();
+  //   console.log("User Info:", userData);
+  //   setUserInfo(userData);
+  // };
 
   // Handle file upload to Google Drive
   const handleFileUpload = async (file: Blob) => {
@@ -727,31 +728,22 @@ function App() {
       <p id="log">&nbsp;</p>
 
       <hr/>
-      <h1>React Google Drive Upload Example</h1>
-      <div className="g_id_signin"
-        data-type="standard"
-        data-size="large"
-        data-theme="outline"
-        data-text="signin_with"
-        data-shape="rectangular"
-        data-logo_alignment="left">
-      </div>
+      {/* <h1>React Google Drive Upload Example</h1>
       {!userInfo ? (
-      <div>
         <div id="g_id_onload"
           data-client_id="29351427051-o8o8g4dhd68l45ifshsc69lvui69jnfi.apps.googleusercontent.com"
-          data-callback="handleCredentialResponse">
+          data-callback={handleCredentialResponse}>
         </div>
-      </div>
       ) : (
         <div>
           <p>Welcome, {userInfo.name}</p>
-          <button onClick={() => handleFileUpload(new Blob([JSON.stringify({ key: "value" })]))}>
-            Upload JSON to Google Drive
-          </button>
-        </div>
-      )}
-      <div className="g_id_signin" data-type="standard"></div>
+          </div>
+          )}
+          <div className="g_id_signin" data-type="standard"></div> */}
+      <GoogleSignIn />
+      <button onClick={() => handleFileUpload(new Blob([JSON.stringify({ key: "value" })]))}>
+        Upload JSON to Google Drive
+      </button>
       <hr/>
     </div>
   );
