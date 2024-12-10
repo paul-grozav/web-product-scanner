@@ -20,7 +20,7 @@ pages:
   - rm -rf public
   - cd my-app-frontend
   - npm install
-  - npm run build
+  - CI=false npm run build
   - mv build ../public
 
   artifacts:
