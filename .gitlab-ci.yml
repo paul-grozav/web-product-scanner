@@ -6,11 +6,23 @@ stages:
 # ============================================================================ #
 pages:
   stage: deploy
-  image: docker.io/debian:12.2
+
+# Static website
+#  image: docker.io/debian:12.2
+#  script:
+#  # - env
+#  - sed -i 's/_GIT_COMMIT_ID_/'${CI_COMMIT_SHORT_SHA}'/g' public/index.html
+#  - sed -i 's/_GIT_COMMIT_TIMESTAMP_/'${CI_COMMIT_TIMESTAMP}'/g' public/index.html
+
+# React NodeJS app
+  image: docker.io/node:23.3.0-alpine3.20
   script:
-  # - env
-  - sed -i 's/_GIT_COMMIT_ID_/'${CI_COMMIT_SHORT_SHA}'/g' public/index.html
-  - sed -i 's/_GIT_COMMIT_TIMESTAMP_/'${CI_COMMIT_TIMESTAMP}'/g' public/index.html
+  - rm -rf public
+  - cd my-app-frontend
+  - npm install
+  - npm build
+  - mv build ../public
+
   artifacts:
     paths:
     - public/
