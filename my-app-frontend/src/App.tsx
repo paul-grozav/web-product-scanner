@@ -729,6 +729,7 @@ function App() {
       <hr/>
       <h1>React Google Drive Upload Example</h1>
       {!userInfo ? (
+      <div>
         <div id="g_id_onload"
           data-client_id="29351427051-o8o8g4dhd68l45ifshsc69lvui69jnfi.apps.googleusercontent.com"
           data-callback="handleCredentialResponse">
@@ -741,6 +742,7 @@ function App() {
           data-shape="rectangular"
           data-logo_alignment="left">
         </div>
+      </div>
       ) : (
         <div>
           <p>Welcome, {userInfo.name}</p>
