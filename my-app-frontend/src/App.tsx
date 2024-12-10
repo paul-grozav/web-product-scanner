@@ -733,6 +733,14 @@ function App() {
           data-client_id="29351427051-o8o8g4dhd68l45ifshsc69lvui69jnfi.apps.googleusercontent.com"
           data-callback="handleCredentialResponse">
         </div>
+        <div class="g_id_signin"
+          data-type="standard"
+          data-size="large"
+          data-theme="outline"
+          data-text="signin_with"
+          data-shape="rectangular"
+          data-logo_alignment="left">
+        </div>
       ) : (
         <div>
           <p>Welcome, {userInfo.name}</p>
