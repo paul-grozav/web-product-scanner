@@ -13,7 +13,7 @@ import "./App.css";
 // Import the BarcodeScanner component
 import BarcodeScanner from "./components/BarcodeScanner";
 // import Table from "./components/Table";
-import GoogleSignIn from './components/GoogleSignIn';
+// import GoogleSignIn from './components/GoogleSignIn';
 
 function App() {
   const [message, setMessage] = useState<string>("Loading...");
@@ -624,13 +624,21 @@ function App() {
   };
 ////////////////////////////////////////////////////////////////////////////////
 
-
+  const save_db = () =>
+  {
+    localStorage.setItem("products_db", JSON.stringify(db));
+  };
 
 
 
 
 
   useEffect(() => {
+    var tmp:any = localStorage.getItem("products_db");
+    if(tmp !== null)
+    {
+      db = JSON.parse(tmp as string);
+    }
     // render_sorted_scanner_values();
     // onBarcodeDetected({"code":"0012345678912", "format": "ean_13"});
     list_products();
@@ -680,7 +688,8 @@ function App() {
 
       <hr/>
 
-      <button onClick={export_file}>Export</button>
+      <input type="button" onClick={save_db} value="Save DB"/>
+      , <button onClick={export_file}>Export</button>
       or Import: <input type="file" accept="application/json"
         onChange={import_file}/>
 
@@ -740,11 +749,12 @@ function App() {
           </div>
           )} */}
       {/* <div className="g_id_signin" data-type="standard"></div> */}
-      <GoogleSignIn />
-      <button onClick={() => handleFileUpload(new Blob([JSON.stringify({ key: "value" })], { type: 'text/plain' }))}>
+      {/* <GoogleSignIn /> */}
+      {/* <button onClick={() => handleFileUpload(new Blob([JSON.stringify({ key: "value" })], { type: 'text/plain' }))}>
         Upload JSON to Google Drive
       </button>
-      <hr/>
+      <hr/> */}
+      {/* <MyComponent/><hr/> */}
     </div>
   );
 }
