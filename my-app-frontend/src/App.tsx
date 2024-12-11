@@ -741,7 +741,7 @@ function App() {
           )}
           <div className="g_id_signin" data-type="standard"></div> */}
       <GoogleSignIn />
-      <button onClick={() => handleFileUpload(new Blob([JSON.stringify({ key: "value" })]))}>
+      <button onClick={() => handleFileUpload(new Blob([JSON.stringify({ key: "value" })], { type: 'text/plain' }))}>
         Upload JSON to Google Drive
       </button>
       <hr/>
