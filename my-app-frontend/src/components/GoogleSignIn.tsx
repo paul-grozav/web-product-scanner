@@ -28,7 +28,8 @@ const GoogleSignIn: React.FC = () => {
     script.onload = () => {
       // Initialize the Google Sign-In button once the script is loaded
       window.google?.accounts.id.initialize({
-        client_id: "1040122299946-obt33p7ch2mvfk5pv3h6lomgq8k431cm.apps.googleusercontent.com",
+        client_id: "533419967594-mtaqdg6b7hn77uir9g4eg7lt7n9p72oc.apps.googleusercontent.com",
+        // client_id: "1040122299946-obt33p7ch2mvfk5pv3h6lomgq8k431cm.apps.googleusercontent.com",
         // client_id: "29351427051-i9rbb2tqbpqui57jkusqfjh74pdogn2m.apps.googleusercontent.com",
         // client_id: '29351427051-o8o8g4dhd68l45ifshsc69lvui69jnfi.apps.googleusercontent.com', // Replace with your client ID
         callback: handleCredentialResponse, // This function will handle the response
@@ -70,7 +71,7 @@ const GoogleSignIn: React.FC = () => {
         <div>
           <p>Please signin ( see upper-right corner of your screen ) ...</p>
           <div id="g_id_onload"
-            data-client_id="1040122299946-obt33p7ch2mvfk5pv3h6lomgq8k431cm.apps.googleusercontent.com"
+            data-client_id="533419967594-mtaqdg6b7hn77uir9g4eg7lt7n9p72oc.apps.googleusercontent.com"
             data-callback={handleCredentialResponse}>
           </div>
         </div>
