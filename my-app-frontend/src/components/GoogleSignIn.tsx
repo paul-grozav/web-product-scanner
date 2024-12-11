@@ -1,6 +1,18 @@
 // src/components/GoogleSignIn.tsx
 import React, { useState, useEffect } from 'react';
 
+// Handle the Google Sign-In response
+export const handleCredentialResponse = (response: any) => {
+  console.log('Google Sign-In response:', response);
+  // Here, you can send the token to your backend or do other operations
+  // For example: authenticate with your server using response.credential
+  const { credential } = response;
+  // Send the ID token to your backend or verify it on the frontend
+  // For simplicity, we'll assume the client directly uses the token for Google Drive API
+  localStorage.setItem("google_token", credential); // Store token to local storage
+  // getUserInfo(); // Fetch user information
+};
+
 const GoogleSignIn: React.FC = () => {
   const [userInfo, setUserInfo] = useState<any>(null);
 
@@ -21,6 +33,7 @@ const GoogleSignIn: React.FC = () => {
         // client_id: '29351427051-o8o8g4dhd68l45ifshsc69lvui69jnfi.apps.googleusercontent.com', // Replace with your client ID
         callback: handleCredentialResponse, // This function will handle the response
       });
+      window.google?.accounts.id.prompt();
 
       // Render the sign-in button
       // window.google?.accounts.id.renderButton(
@@ -40,18 +53,6 @@ const GoogleSignIn: React.FC = () => {
       document.body.removeChild(script);
     };
   }, []);
-
-  // Handle the Google Sign-In response
-  const handleCredentialResponse = (response: any) => {
-    console.log('Google Sign-In response:', response);
-    // Here, you can send the token to your backend or do other operations
-    // For example: authenticate with your server using response.credential
-    const { credential } = response;
-    // Send the ID token to your backend or verify it on the frontend
-    // For simplicity, we'll assume the client directly uses the token for Google Drive API
-    localStorage.setItem("google_token", credential); // Store token to local storage
-    getUserInfo(); // Fetch user information
-  };
 
   // Get user info using Google OAuth credentials (token)
   const getUserInfo = async () => {
