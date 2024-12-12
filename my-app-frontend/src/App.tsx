@@ -666,24 +666,6 @@ function App() {
   return (
     <div className="App">
       <h1>{message}</h1>
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-      work in progress ...
-
-      <br/>
-      build_version: dad28715
-
-      <br/>
-      build_timestamp: 2024-10-30T19:27:31+00:00
-
-      <br/>
-      Check back later.
-
-      <br/>
-      by Tancredi-Paul Grozav &lt;paul@grozav.info&gt;
-
-      <hr/>
-
       <input type="button" onClick={save_db} value="Save DB"/>
       , <button onClick={export_file}>Export</button>
       or Import: <input type="file" accept="application/json"
