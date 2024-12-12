@@ -30,10 +30,12 @@ function App() {
 
   const onBarcodeDetected = (scanned_value: any) =>
   {
-    console.log("PARENT.onBarcodeDetected(", scanned_value, ")");
+    // console.log("PARENT.onBarcodeDetected(", scanned_value, ")");
 
     var code = scanned_value.code;
     var format = scanned_value.format;
+    (codeProductEditRef.current as HTMLInputElement).value = code;
+    (codeFormatProductEditRef.current as HTMLInputElement).value = format;
     var id = code + " " + format;
 
     // display the found product
@@ -290,15 +292,8 @@ function App() {
   const create_product = () =>
   {
     var id = db.products[db.products.length - 1].id + 1;
-    // var code_value = document.querySelector(
-    //   'input[name="radio_code_product_edit"]:checked').value;
-    // const selectedRadio = Array.from(codeProductEditRef.current).find(
-    //   (radio) => radio.checked
-    // );
-    var code_value = "23423423"; // selectedRadioId;
-    var code_format = code_value.split(" ")[3];
-    code_value = code_value.split(" ")[2];
-    // var name = document.getElementById("name_product_edit").value;
+    var code_value = codeProductEditRef.current?.value as string;
+    var code_format = codeFormatProductEditRef.current?.value as string;
     var name = nameProductEditRef.current?.value as string;
     var product = {
       "id": id,
