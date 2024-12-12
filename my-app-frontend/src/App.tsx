@@ -14,6 +14,7 @@ import "./App.css";
 import BarcodeScanner from "./components/BarcodeScanner";
 // import Table from "./components/Table";
 // import GoogleSignIn from './components/GoogleSignIn';
+import Supabase from './components/Supabase';
 
 function App() {
   const [message, setMessage] = useState<string>("Loading...");
@@ -750,6 +751,7 @@ function App() {
       </button>
       <hr/> */}
       {/* <MyComponent/><hr/> */}
+      <Supabase/>
     </div>
   );
 }
