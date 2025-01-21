@@ -733,7 +733,7 @@ function App() {
       </button>
       <hr/> */}
       {/* <MyComponent/><hr/> */}
-      <Supabase/>
+      {/* <Supabase/> */}
     </div>
   );
 }
