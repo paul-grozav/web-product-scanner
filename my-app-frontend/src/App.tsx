@@ -425,6 +425,7 @@ function App() {
     (nameProductEditRef.current as any).value = p.name;
     (codeProductEditRef.current as any).value = p.code_value;
     (codeFormatProductEditRef.current as any).value = p.code_format;
+    (productItemEditRef.current as any).value = p.id;
     log("filled_product");
   };  
 // -------------------------------------------------------------------------- //
@@ -521,6 +522,7 @@ function App() {
     (yearExpirationItemEditRef.current as any).value = item.expiration_year;
     (monthExpirationItemEditRef.current as any).value = item.expiration_month;
     (dayExpirationItemEditRef.current as any).value = item.expiration_day;
+    
     log("filled_item");
   };
 
