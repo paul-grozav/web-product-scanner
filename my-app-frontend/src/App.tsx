@@ -18,6 +18,8 @@ import Supabase from './components/Supabase';
 
 function App() {
   const [message, setMessage] = useState<string>("Loading...");
+  const [deferredPrompt, setDeferredPrompt] = useState(null);
+  const [isInstallable, setIsInstallable] = useState(false);
 
   useEffect(() => {
     // fetch("http://localhost:5000/api/hello")
@@ -27,7 +29,38 @@ function App() {
     //     console.error(error);
     //     setMessage("Error loading message");
     //   });
+
+
+    // The follwing are for the Install App button
+    // Listen for the `beforeinstallprompt` event
+    const handleBeforeInstallPrompt = (e) => {
+      e.preventDefault(); // Prevent the default mini-infobar
+      setDeferredPrompt(e); // Save the event for later use
+      setIsInstallable(true); // Show the install button
+    };
+
+    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+
+    return () => {
+      window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+    };
   }, []);
+
+
+  const handleInstallClick = async () => {
+    if (!deferredPrompt) return;
+
+    deferredPrompt.prompt(); // Show the install prompt
+
+    const choiceResult = await deferredPrompt.userChoice; // Wait for the user to respond
+    if (choiceResult.outcome === "accepted") {
+      console.log("App installed");
+    } else {
+      console.log("App installation rejected");
+    }
+
+    setDeferredPrompt(null); // Clear the deferred prompt
+  };
 
   const onBarcodeDetected = (scanned_value: any) =>
   {
@@ -732,6 +765,11 @@ function App() {
         Upload JSON to Google Drive
       </button>
       <hr/> */}
+      {isInstallable && (
+        <button onClick={handleInstallClick} style={{ padding: "10px 20px", fontSize: "16px" }}>
+          Install App
+        </button>
+      )}
       {/* <MyComponent/><hr/> */}
       {/* <Supabase/> */}
     </div>
