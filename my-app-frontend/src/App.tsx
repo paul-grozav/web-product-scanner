@@ -18,7 +18,7 @@ import Supabase from './components/Supabase';
 
 function App() {
   const [message, setMessage] = useState<string>("Loading...");
-  const [deferredPrompt, setDeferredPrompt] = useState(null);
+  const [deferredPrompt, setDeferredPrompt] = useState<any | null>(null);
   const [isInstallable, setIsInstallable] = useState(false);
 
   useEffect(() => {
