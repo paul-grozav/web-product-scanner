@@ -33,7 +33,7 @@ function App() {
 
     // The follwing are for the Install App button
     // Listen for the `beforeinstallprompt` event
-    const handleBeforeInstallPrompt = (e) => {
+    const handleBeforeInstallPrompt = (e:any) => {
       e.preventDefault(); // Prevent the default mini-infobar
       setDeferredPrompt(e); // Save the event for later use
       setIsInstallable(true); // Show the install button
