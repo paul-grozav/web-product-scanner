@@ -1,31 +1,31 @@
-stages:
-- deploy
+# stages:
+# - deploy
 
 
 
-# ============================================================================ #
-pages:
-  stage: deploy
+# # ============================================================================ #
+# pages:
+#   stage: deploy
 
-# Static website
-#  image: docker.io/debian:12.2
-#  script:
-#  # - env
+# # Static website
+# #  image: docker.io/debian:12.2
+# #  script:
+# #  # - env
 
-# React NodeJS app
-  image: docker.io/node:23.3.0-alpine3.20
-  script:
-  - rm -rf public
-  - cd my-app-frontend
-  - npm install
-  - CI=false npm run build
-  - mv build ../public
-  - cd ..
-  - sed -i 's/_GIT_COMMIT_ID_/'${CI_COMMIT_SHORT_SHA}'/g' public/index.html
-  - sed -i 's/_GIT_COMMIT_TIMESTAMP_/'${CI_COMMIT_TIMESTAMP}'/g' public/index.html
+# # React NodeJS app
+#   image: docker.io/node:23.3.0-alpine3.20
+#   script:
+#   - rm -rf public
+#   - cd my-app-frontend
+#   - npm install
+#   - CI=false npm run build
+#   - mv build ../public
+#   - cd ..
+#   - sed -i 's/_GIT_COMMIT_ID_/'${CI_COMMIT_SHORT_SHA}'/g' public/index.html
+#   - sed -i 's/_GIT_COMMIT_TIMESTAMP_/'${CI_COMMIT_TIMESTAMP}'/g' public/index.html
 
-  artifacts:
-    paths:
-    - public/
-    expire_in: 1 hour
-# ============================================================================ #
+#   artifacts:
+#     paths:
+#     - public/
+#     expire_in: 1 hour
+# # ============================================================================ #
