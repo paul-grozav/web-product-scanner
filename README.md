@@ -1,0 +1,1 @@
+Live link: https://paul-grozav.github.io/web-product-scanner/ .
