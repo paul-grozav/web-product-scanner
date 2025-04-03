@@ -3,6 +3,7 @@
 // - Tancredi-Paul Grozav <paul@grozav.info>
 // -------------------------------------------------------------------------- //
 // Published at:
+// https://paul-grozav.github.io/web-product-scanner/
 // https://tancredi-paul-grozav.gitlab.io/web-product-scanner
 //
 // Maybe we could use something like this in the future:

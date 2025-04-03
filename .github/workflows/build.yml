@@ -44,9 +44,9 @@ jobs:
         CI=false npm run build &&
         mv build ../public &&
         cd .. &&
+        ls -la public &&
+        find public -type f &&
         sed -i 's/_GIT_COMMIT_ID_/'$(echo ${{ github.sha }} | cut -c1-8 )'/g' public/index.html &&
-        echo "${{ github.event.head_commit.timestamp }}" &&
-        echo "$(date --date="${{ github.event.head_commit.timestamp }}" +"%Y-%m-%dT%H:%M:%S%:z")" &&
         sed -i 's/_GIT_COMMIT_TIMESTAMP_/'"$(date --date="${{ github.event.head_commit.timestamp }}" +"%Y-%m-%dT%H:%M:%S%:z")"'/g' public/index.html &&
         true
     - name: Upload static files as artifact
