@@ -53,6 +53,7 @@ jobs:
       with:
         path: public
         retention-days: 1
+
   # Deployment job
   deploy:
     environment:
